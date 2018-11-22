@@ -39,9 +39,7 @@ Pretty simple, right? Well this is where it gets interesting:
 * The `quality` of an item is never more than 50
 * "Sulfuras", being a legendary item, never has to be sold or decreases in
   `quality`
-* "Backstage passes", like aged brie, increases in `quality` as its `sell_in` value
-  approaches; `quality` increases by 2 when there are 10 days or less and by 3
-  when there are 5 days or less but `quality` drops to 0 after the concert
+* "Backstage passes", like aged brie, increases in `quality` as its `sell_in` value approaches; `quality` increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but `quality` drops to 0 after the concert
 
 Feel free to make any changes to the `#update_quality` method and add any new
 code as long as everything still works correctly. However, do not alter the

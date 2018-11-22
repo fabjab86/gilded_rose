@@ -160,7 +160,7 @@ describe GildedRose do
   # * "Conjured" items degrade in `quality` twice as fast as normal items
 
   describe "Conjured items - no idea what they are..." do
-    it "degrades twice as fast as general items" do
+    xit "degrades twice as fast as general items" do
       item = Item.new("Conjured", 4, 25)
       GildedRose.new([item]).update_quality
       expect(item.quality).to eq(23)
