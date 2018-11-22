@@ -101,9 +101,9 @@ describe GildedRose do
       expect(item.quality).to eq(50)
     end
   end
-
-  # * "Sulfuras", being a legendary item, never has to be sold or decreases in
-  #   `quality`
+  #
+  # # * "Sulfuras", being a legendary item, never has to be sold or decreases in
+  # #   `quality`
 
   describe "Sulfuras" do
     it "never decreses in quality" do
@@ -119,13 +119,13 @@ describe GildedRose do
     end
   end
 
-  # * "Backstage passes", like aged brie, increases in `quality` as its `sell_in` value
-  #   approaches; `quality` increases by 2 when there are 10 days or less and by 3
-  #   when there are 5 days or less but `quality` drops to 0 after the concert
-
+  # # * "Backstage passes", like aged brie, increases in `quality` as its `sell_in` value
+  # #   approaches; `quality` increases by 2 when there are 10 days or less and by 3
+  # #   when there are 5 days or less but `quality` drops to 0 after the concert
+  #
   describe "Backstage passes" do
 
-    it "increases in quality by 1" do
+    it "increases in quality by 1 if sell_in is greater than 10" do
       item = Item.new("Backstage passes to a TAFKAL80ETC concert", 15, 25)
       GildedRose.new([item]).update_quality
       expect(item.quality).to eq(26)
@@ -137,13 +137,13 @@ describe GildedRose do
       expect(item.quality).to eq(27)
     end
 
-    it "increases three times in quality if the sell_in in 10 or less" do
+    it "increases three times in quality if the sell_in in 5 or less" do
       item = Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 25)
       GildedRose.new([item]).update_quality
       expect(item.quality).to eq(28)
     end
 
-    it "increases three times in quality if the sell_in in 10 or less" do
+    it "sets the quality to zero if sell_in is zero" do
       item = Item.new("Backstage passes to a TAFKAL80ETC concert", 0, 25)
       GildedRose.new([item]).update_quality
       expect(item.quality).to eq(0)
@@ -155,15 +155,20 @@ describe GildedRose do
       expect(item.quality).to eq(50)
     end
 
-  end
-
-  # * "Conjured" items degrade in `quality` twice as fast as normal items
-
-  describe "Conjured items - no idea what they are..." do
-    xit "degrades twice as fast as general items" do
-      item = Item.new("Conjured", 4, 25)
+    it 'only raises quality to 50 when quality is at 49' do
+      item = Item.new("Backstage passes to a TAFKAL80ETC concert", 10, 49)
       GildedRose.new([item]).update_quality
-      expect(item.quality).to eq(23)
+      expect(item.quality).to eq(50)
     end
   end
+  #
+  # # * "Conjured" items degrade in `quality` twice as fast as normal items
+  #
+  # describe "Conjured items - no idea what they are..." do
+  #   xit "degrades twice as fast as general items" do
+  #     item = Item.new("Conjured", 4, 25)
+  #     GildedRose.new([item]).update_quality
+  #     expect(item.quality).to eq(23)
+  #   end
+  # end
 end
