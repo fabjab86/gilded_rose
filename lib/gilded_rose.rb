@@ -1,58 +1,41 @@
-class GildedRose
+require_relative 'generalitems'
+require_relative 'backstagepass'
+require_relative 'agedbrie'
+require_relative 'conjured'
+require_relative 'sulfuras'
 
-  def initialize(items)
+class GildedRose
+  attr_reader :brie, :backstage, :sulfurasItem, :conjuredItem
+
+  def initialize(items, generalitems = GeneralItems.new, agedbrie = AgedBrie.new,
+  backstagepass = BackStagePass.new, conjured = Conjured.new, sulfuras = Sulfuras.new)
     @items = items
+    @generalitems = generalitems
+    @agedbrie = agedbrie
+    @backstagepass = backstagepass
+    @conjured = conjured
+    @sulfuras = sulfuras
+    @brie = "Aged Brie"
+    @backstage = "Backstage passes to a TAFKAL80ETC concert"
+    @sulfurasItem = "Sulfuras, Hand of Ragnaros"
+    @conjuredItem = "Conjured"
   end
 
   def update_quality
-    brie = "Aged Brie"
-    backstage = "Backstage passes to a TAFKAL80ETC concert"
-    sulfuras = "Sulfuras, Hand of Ragnaros"
-
     @items.each do |item|
-      # step 1
-      if item.name != brie and item.name != backstage
-        if item.quality > 0 and item.name != sulfuras
-            item.quality = item.quality - 1
-        end
-      else
-        if item.quality < 50
-          item.quality = item.quality + 1
-          # step 2
-          if item.name == backstage
-            if item.sell_in < 11
-              if item.quality < 50
-                item.quality = item.quality + 1
-              end
-            end
-            if item.sell_in < 6
-              if item.quality < 50
-                item.quality = item.quality + 1
-              end
-            end
-          end
-        end
-      end
-      if item.name != sulfuras
-        item.sell_in = item.sell_in - 1
-      end
-      if item.sell_in < 0
-        if item.name != brie
-          if item.name != backstage
-            if item.quality > 0
-              if item.name != sulfuras
-                item.quality = item.quality - 1
-              end
-            end
-          else
-            item.quality = item.quality - item.quality
-          end
-        else
-          if item.quality < 50
-            item.quality = item.quality + 1
-          end
-        end
+      if (item.name != @brie and item.name != @backstage and
+        item.name != @sulfurasItem and item.name != @conjuredItem)
+        @generalitems.general(item)
+      elsif item.name == @brie
+        @agedbrie.aged_brie(item)
+      elsif item.name == @backstage
+        @backstagepass.backstage_pass(item)
+      elsif item.name == @sulfurasItem
+        @sulfuras.sulfuras(item)
+      elsif item.name == @conjuredItem
+        @conjured.conjured(item)
       end
     end
   end
+
 end
