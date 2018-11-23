@@ -1,77 +1,44 @@
+require_relative 'generalitems'
+require_relative 'backstagepass'
+require_relative 'agedbrie'
+require_relative 'conjured'
+require_relative 'sulfuras'
+
 class GildedRose
 
   def initialize(items)
     @items = items
-  end
+    generalitems = GeneralItems.new
+    agedbrie = AgedBrie.new
+    backstagepass = BackStagePass.new
+    conjured = Conjured.new
+    sulfuras = Sulfuras.new
 
-  def general(item)
-    if item.quality == 0 and item.sell_in > 0
-      item.sell_in -= 1
-    elsif item.quality > 0 and item.sell_in > 0
-      item.quality -= 1 and item.sell_in -= 1
-    elsif item.quality > 0 and item.sell_in = 0
-        item.quality -= 2
-    end
-  end
-
-  def aged_brie(item)
-    if item.quality == 50 and item.sell_in > 0
-      item.sell_in -= 1
-    elsif item.quality == 49 and item.sell_in > 0
-      item.quality += 1 and item.sell_in -= 1
-    elsif item.quality < 49 and item.sell_in == 0
-      item.quality += 2
-    else item.quality < 50 and item.sell_in == 0
-      item.quality += 1
-    end
-  end
-
-  def sulfuras(item)
-    item.quality = item.quality and item.sell_in = item.sell_in
-  end
-
-  def backstage_pass(item)
-    if item.sell_in == 0
-      item.quality = 0
-    elsif item.quality == 50 and item.sell_in > 0
-      item.sell_in -= 1
-    elsif item.quality <= 47 and item.sell_in <= 5
-      item.quality += 3 and item.sell_in -= 1
-    elsif item.quality <= 48 and item.sell_in <= 10
-      item.quality += 2 and item.sell_in -= 1
-    elsif item.quality < 50 and item.sell_in >= 10
-      item.quality += 1 and item.sell_in -= 1
-    end
-  end
-
-  def conjured(item)
-    if item.quality == 0 or item.sell_in == 0
-      item.quality = 0 and item.sell_in = 0 
-    elsif item.quality < 50 and item.sell_in > 0
-      item.quality -= 2 and item.sell_in -= 1
-    end
+    @generalitems = generalitems
+    @agedbrie = agedbrie
+    @backstagepass = backstagepass
+    @conjured = conjured
+    @sulfuras = sulfuras
   end
 
   def update_quality
     brie = "Aged Brie"
     backstage = "Backstage passes to a TAFKAL80ETC concert"
     sulfuras = "Sulfuras, Hand of Ragnaros"
-    conjured = "Conjured"
+    conjuredItem = "Conjured"
 
     @items.each do |item|
-      if item.name != brie and item.name != backstage and item.name != sulfuras and item.name != conjured
-        general(item)
+      if item.name != brie and item.name != backstage and item.name != sulfuras and item.name != conjuredItem
+        @generalitems.general(item)
       elsif item.name == brie
-        aged_brie(item)
+        @agedbrie.aged_brie(item)
       elsif item.name == backstage
-        backstage_pass(item)
+        @backstagepass.backstage_pass(item)
       elsif item.name == sulfuras
-        sulfuras(item)
-      elsif item.name == conjured
-        conjured(item)
+        @sulfuras.sulfuras(item)
+      elsif item.name == conjuredItem
+        @conjured.conjured(item)
       end
     end
   end
-
-
 end
