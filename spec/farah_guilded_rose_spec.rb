@@ -163,12 +163,32 @@ describe GildedRose do
   end
   #
   # # * "Conjured" items degrade in `quality` twice as fast as normal items
-  #
-  # describe "Conjured items - no idea what they are..." do
-  #   xit "degrades twice as fast as general items" do
-  #     item = Item.new("Conjured", 4, 25)
-  #     GildedRose.new([item]).update_quality
-  #     expect(item.quality).to eq(23)
-  #   end
-  # end
+   # quality can not be more then 50
+
+
+  describe "Conjured items - no idea what they are..." do
+    it "degrades twice as fast as general items" do
+      item = Item.new("Conjured", 4, 25)
+      GildedRose.new([item]).update_quality
+      expect(item.quality).to eq(23)
+    end
+
+    it "decreses sell_in by 1 everyday" do
+      item = Item.new("Conjured", 4, 25)
+      GildedRose.new([item]).update_quality
+      expect(item.sell_in).to eq(3)
+    end
+
+    it "if sell_in is zero quality is zero" do
+      item = Item.new("Conjured", 0, 25)
+      GildedRose.new([item]).update_quality
+      expect(item.quality).to eq(0)
+    end
+
+    it "if quality is zero sell_in is zero" do
+      item = Item.new("Conjured", 5, 0)
+      GildedRose.new([item]).update_quality
+      expect(item.sell_in).to eq(0)
+    end
+  end
 end
