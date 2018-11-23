@@ -1,5 +1,5 @@
 class AgedBrie
-  
+
   def aged_brie(item)
     if item.quality == 50 and item.sell_in > 0
       item.sell_in -= 1
