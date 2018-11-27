@@ -79,12 +79,18 @@ describe GildedRose do
       expect(item.quality).to eq(7)
     end
 
-    it "raises quality by two after a day" do
-      item = Item.new("Aged Brie", 0, 0)
+    it "has max 50 quality" do
+      item = Item.new("Aged Brie", 10, 50)
       GildedRose.new([item]).update_quality
-      expect(item.quality).to eq(2)
+      expect(item.quality).to eq(50)
     end
 
+    it "the sel_in date reduces daily" do
+      item = Item.new("Aged Brie", 10, 45)
+      GildedRose.new([item]).update_quality
+      GildedRose.new([item]).update_quality
+      expect(item.sell_in).to eq(8)
+    end
   end
 
   # * The `quality` of an item is never more than 50
@@ -158,6 +164,12 @@ describe GildedRose do
 
     it 'only raises quality to 50 when quality is at 49' do
       item = Item.new("Backstage passes to a TAFKAL80ETC concert", 10, 49)
+      GildedRose.new([item]).update_quality
+      expect(item.quality).to eq(50)
+    end
+
+    it "increases quality by 1 if quality is more than 48 and sell_in is 5 or less" do
+      item = Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 49)
       GildedRose.new([item]).update_quality
       expect(item.quality).to eq(50)
     end
