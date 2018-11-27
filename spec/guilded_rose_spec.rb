@@ -141,7 +141,13 @@ describe GildedRose do
     it "increases twice in quality if the sell_in in 10 or less" do
       item = Item.new("Backstage passes to a TAFKAL80ETC concert", 10, 25)
       GildedRose.new([item]).update_quality
-      expect(item.sell_in).to eq(9)
+      expect(item.quality).to eq(27)
+    end
+
+    it "increases twice in quality if the sell_in in 10 or less" do
+      item = Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 48)
+      GildedRose.new([item]).update_quality
+      expect(item.quality).to eq(50)
     end
 
     it "reduces sell_in by 1 if quality is 49" do
@@ -154,12 +160,6 @@ describe GildedRose do
       item = Item.new("Backstage passes to a TAFKAL80ETC concert", 12, 50)
       GildedRose.new([item]).update_quality
       expect(item.sell_in).to eq(11)
-    end
-
-    it "reduces sell_in by 1 if quality is 50 and sell_in is 4" do
-      item = Item.new("Backstage passes to a TAFKAL80ETC concert", 4, 50)
-      GildedRose.new([item]).update_quality
-      expect(item.sell_in).to eq(3)
     end
 
     it "increases three times in quality if the sell_in in 5 or less" do
