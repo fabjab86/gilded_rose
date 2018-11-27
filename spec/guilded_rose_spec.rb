@@ -108,19 +108,19 @@ describe GildedRose do
       expect(item.quality).to eq(50)
     end
   end
-  #
+
   # # * "Sulfuras", being a legendary item, never has to be sold or decreases in
   # #   `quality`
 
   describe "Sulfuras" do
     it "never decreses in quality" do
-      item = Item.new("Sulfuras, Hand of Ragnaros", 5 , 40)
+      item = Item.new("Sulfuras, Hand of Ragnaros", 5, 40)
       GildedRose.new([item]).update_quality
       expect(item.quality).to eq(40)
     end
 
     it "never has to be sold" do
-      item = Item.new("Sulfuras, Hand of Ragnaros", 5 , 40)
+      item = Item.new("Sulfuras, Hand of Ragnaros", 5, 40)
       GildedRose.new([item]).update_quality
       expect(item.sell_in).to eq(5)
     end
@@ -129,7 +129,7 @@ describe GildedRose do
   # # * "Backstage passes", like aged brie, increases in `quality` as its `sell_in` value
   # #   approaches; `quality` increases by 2 when there are 10 days or less and by 3
   # #   when there are 5 days or less but `quality` drops to 0 after the concert
-  #
+
   describe "Backstage passes" do
 
     it "increases in quality by 1 if sell_in is greater than 10" do
@@ -174,10 +174,9 @@ describe GildedRose do
       expect(item.quality).to eq(50)
     end
   end
-  #
+
   # # * "Conjured" items degrade in `quality` twice as fast as normal items
    # quality can not be more then 50
-
 
   describe "Conjured items - no idea what they are..." do
     it "degrades twice as fast as general items" do
