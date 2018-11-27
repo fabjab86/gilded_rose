@@ -37,13 +37,6 @@ Pretty simple, right? Well this is where it gets interesting:
 however "Sulfuras" is a legendary item and as such its Quality is 80 and it
 never alters.
 
-### Write the tests (optional)
-
-If you would like to get more practice writing tests or an extra challenge, go
-ahead and delete the contents of `spec/gilded_rose_spec.rb`. You can then write
-your own tests. Note that this won't be good practice for test-driven
-development as the code is already written, but you will still learn much about
-testing legacy code in the process.
 
 ### The first new feature
 
