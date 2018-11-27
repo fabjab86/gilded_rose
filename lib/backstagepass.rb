@@ -13,7 +13,7 @@ class BackStagePass
       item.quality += 3
     elsif item.quality <= 48 and item.sell_in <= 10
       item.quality += 2
-    elsif item.quality < 50 and item.sell_in > 9
+    elsif item.quality < 50 and item.sell_in > 4
       item.quality += 1
     end
   end
