@@ -3,9 +3,6 @@ require 'generalitems'
 require 'item'
 
 describe GildedRose do
-
-
-
   # # * "Backstage passes", like aged brie, increases in `quality` as its `sell_in` value
   # #   approaches; `quality` increases by 2 when there are 10 days or less and by 3
   # #   when there are 5 days or less but `quality` drops to 0 after the concert
@@ -76,35 +73,6 @@ describe GildedRose do
       item = Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 49)
       GildedRose.new([item]).update_quality
       expect(item.quality).to eq(50)
-    end
-  end
-
-  # # * "Conjured" items degrade in `quality` twice as fast as normal items
-   # quality can not be more then 50
-
-  describe "Conjured items - no idea what they are..." do
-    xit "degrades twice as fast as general items" do
-      item = Item.new("Conjured", 4, 25)
-      GildedRose.new([item]).update_quality
-      expect(item.quality).to eq(23)
-    end
-
-    xit "decreses sell_in by 1 everyday" do
-      item = Item.new("Conjured", 4, 25)
-      GildedRose.new([item]).update_quality
-      expect(item.sell_in).to eq(3)
-    end
-
-    xit "if sell_in is zero quality is zero" do
-      item = Item.new("Conjured", 0, 25)
-      GildedRose.new([item]).update_quality
-      expect(item.quality).to eq(0)
-    end
-
-    xit "if quality is zero sell_in is zero" do
-      item = Item.new("Conjured", 5, 0)
-      GildedRose.new([item]).update_quality
-      expect(item.sell_in).to eq(0)
     end
   end
 end
