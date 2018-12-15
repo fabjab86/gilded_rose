@@ -4,46 +4,6 @@ require 'item'
 
 describe GildedRose do
 
-
-  # * "Aged Brie" actually increases in `quality` the older it gets
-
-  describe "Aged Brie quality" do
-    xit "increases in quality the older it gets" do
-      item = Item.new("Aged Brie", 10, 6)
-      GildedRose.new([item]).update_quality
-      expect(item.quality).to eq(7)
-    end
-
-    xit "has max 50 quality" do
-      item = Item.new("Aged Brie", 10, 50)
-      GildedRose.new([item]).update_quality
-      expect(item.quality).to eq(50)
-    end
-
-    xit "the sel_in date reduces daily" do
-      item = Item.new("Aged Brie", 10, 45)
-      GildedRose.new([item]).update_quality
-      GildedRose.new([item]).update_quality
-      expect(item.sell_in).to eq(8)
-    end
-  end
-
-  # * The `quality` of an item is never more than 50
-
-  describe "items quality" do
-    xit "is never more than 50" do
-      item = Item.new("Aged Brie", 3, 50)
-      GildedRose.new([item]).update_quality
-      expect(item.quality).to eq(50)
-    end
-
-    xit "is never more than 50" do
-      item = Item.new("Backstage passes to a TAFKAL80ETC concert", 3, 50)
-      GildedRose.new([item]).update_quality
-      expect(item.quality).to eq(50)
-    end
-  end
-
   # # * "Sulfuras", being a legendary item, never has to be sold or decreases in
   # #   `quality`
 
@@ -66,6 +26,12 @@ describe GildedRose do
   # #   when there are 5 days or less but `quality` drops to 0 after the concert
 
   describe "Backstage passes" do
+
+    xit "is never more than 50" do
+      item = Item.new("Backstage passes to a TAFKAL80ETC concert", 3, 50)
+      GildedRose.new([item]).update_quality
+      expect(item.quality).to eq(50)
+    end
 
     xit "increases in quality by 1 if sell_in is greater than 10" do
       item = Item.new("Backstage passes to a TAFKAL80ETC concert", 15, 25)
