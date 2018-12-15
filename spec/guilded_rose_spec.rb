@@ -4,22 +4,7 @@ require 'item'
 
 describe GildedRose do
 
-  # # * "Sulfuras", being a legendary item, never has to be sold or decreases in
-  # #   `quality`
 
-  describe "Sulfuras" do
-    xit "never decreses in quality" do
-      item = Item.new("Sulfuras, Hand of Ragnaros", 5, 40)
-      GildedRose.new([item]).update_quality
-      expect(item.quality).to eq(40)
-    end
-
-    xit "never has to be sold" do
-      item = Item.new("Sulfuras, Hand of Ragnaros", 5, 40)
-      GildedRose.new([item]).update_quality
-      expect(item.sell_in).to eq(5)
-    end
-  end
 
   # # * "Backstage passes", like aged brie, increases in `quality` as its `sell_in` value
   # #   approaches; `quality` increases by 2 when there are 10 days or less and by 3
