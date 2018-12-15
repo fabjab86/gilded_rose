@@ -23,11 +23,5 @@ describe Conjured do
       item.update_item
       expect(item.quality).to eq(0)
     end
-
-    it "if quality is zero sell_in is zero" do
-      item = Conjured.new("Conjured", 5, 0)
-      item.update_item
-      expect(item.sell_in).to eq(0)
-    end
   end
 end
