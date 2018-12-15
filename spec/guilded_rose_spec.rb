@@ -4,35 +4,6 @@ require 'item'
 
 describe GildedRose do
 
-  # * Once the sell by date has passed, `quality` degrades twice as fast
-
-  describe "quality change based on sell_in" do
-    xit "reduces the quality by 2 if the sell_in has passed" do
-      item = Item.new("Jam", 0, 4)
-      GildedRose.new([item]).update_quality
-      expect(item.quality).to eq(2)
-    end
-  end
-
-  # * The `quality` of an item is never negative
-
-  describe "quality level" do
-    xit "quality is never lower than zero" do
-      item = Item.new("Oranges", 1, 0)
-      GildedRose.new([item]).update_quality
-      expect(item.quality).to eq(0)
-    end
-  end
-
-  # * Once the sell by date has passed, `quality` degrades twice as fast
-
-  describe "quality after sell_in" do
-    xit "degrades twice as fast" do
-      item = Item.new("Grapes", 0, 2)
-      GildedRose.new([item]).update_quality
-      expect(item.quality).to eq(0)
-    end
-  end
 
   # * "Aged Brie" actually increases in `quality` the older it gets
 
