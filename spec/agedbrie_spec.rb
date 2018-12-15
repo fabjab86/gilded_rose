@@ -11,13 +11,13 @@ describe AgedBrie do
       expect(item.quality).to eq(7)
     end
 
-    xit "has max 50 quality" do
+    it "has max 50 quality" do
       item = AgedBrie.new("Aged Brie", 10, 50)
       item.update_item
       expect(item.quality).to eq(50)
     end
 
-    xit "the sel_in date reduces daily" do
+    it "the sel_in date reduces daily" do
       item = AgedBrie.new("Aged Brie", 10, 45)
       item.update_item
       item.update_item

@@ -37,34 +37,30 @@ describe GeneralItems do
     end
   end
 
-
-    # * Once the sell by date has passed, `quality` degrades twice as fast
-
-    describe "quality change based on sell_in" do
-      it "reduces the quality by 2 if the sell_in has passed" do
-        item = GeneralItems.new("Jam", 0, 4)
-        item.update_item
-        expect(item.quality).to eq(2)
-      end
+  # * Once the sell by date has passed, `quality` degrades twice as fast
+  describe "quality change based on sell_in" do
+    it "reduces the quality by 2 if the sell_in has passed" do
+      item = GeneralItems.new("Jam", 0, 4)
+      item.update_item
+      expect(item.quality).to eq(2)
     end
+  end
 
-    # * The `quality` of an item is never negative
-
-    describe "quality level" do
-      it "quality is never lower than zero" do
-        item = GeneralItems.new("Oranges", 1, 0)
-        item.update_item
-        expect(item.quality).to eq(0)
-      end
+  # * The `quality` of an item is never negative
+  describe "quality level" do
+    it "quality is never lower than zero" do
+      item = GeneralItems.new("Oranges", 1, 0)
+      item.update_item
+      expect(item.quality).to eq(0)
     end
+  end
 
-    # * Once the sell by date has passed, `quality` degrades twice as fast
-
-    describe "quality after sell_in" do
-      it "degrades twice as fast" do
-        item = GeneralItems.new("Grapes", 0, 2)
-        item.update_item
-        expect(item.quality).to eq(0)
-      end
+  # * Once the sell by date has passed, `quality` degrades twice as fast
+  describe "quality after sell_in" do
+    it "degrades twice as fast" do
+      item = GeneralItems.new("Grapes", 0, 2)
+      item.update_item
+      expect(item.quality).to eq(0)
     end
+  end
 end
