@@ -1,21 +1,7 @@
-class AgedBrie
-  def aged_brie(item)
-    if item.sell_in > 0
-      if item.quality == 50
-        item.quality = 50
-      elsif item.quality < 50
-        less_than_fifty_method(item)
-      end
-    else
-      error_logger
-    end
-  end
+require 'item'
 
-  def less_than_fifty_method(item)
-    item.quality += 1 and item.sell_in -= 1
-  end
-
-  def error_logger
-    return "There seems to be a problem, please try again"
+class AgedBrie < Item
+  def update_item
+    @quality += 1 and @sell_in -= 1 if @sell_in > 0 and @quality < 50
   end
 end
