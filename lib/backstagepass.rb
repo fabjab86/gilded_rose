@@ -1,63 +1,50 @@
-class BackStagePass
+require 'item'
 
-  def backstage_pass(item)
-    if sell_in_zero(item)
-      zero_method(item)
-    elsif q_fifty(item)
-      q_fifty_method(item)
-    elsif si_less_5(item)
-      si_less_5_method(item)
-    elsif si_less_10(item)
-      si_less_10_method(item)
-    elsif q_less_50(item)
-      q_less_50_method(item)
-    else
-      error_logger
+class BackStagePass < Item
+
+  def update_item
+    @quality = 0 if @sell_in.zero?
+    if quality_is_fifty
+      sell_in_minus_one
+    elsif sell_in_less_5
+      quality_plus_three
+    elsif sell_in_less_10
+      quality_plus_two
+    elsif quality_less_50
+      quality_plus_one
     end
   end
 
-  def sell_in_zero(item)
-    item.sell_in.zero?
+  def quality_is_fifty
+    @quality == 50
   end
 
-  def zero_method(item)
-    item.quality = 0
+  def sell_in_minus_one
+    @sell_in -= 1
   end
 
-  def q_fifty(item)
-    item.quality == 50
+  def sell_in_less_5
+    @quality <= 47 and @sell_in <= 5 and @sell_in != 0
   end
 
-  def q_fifty_method(item)
-    item.sell_in -= 1
+  def quality_plus_three
+    @quality += 3 and @sell_in -= 1
   end
 
-  def si_less_5(item)
-    item.quality <= 47 and item.sell_in <= 5
+  def sell_in_less_10
+    @quality <= 48 and @sell_in <= 10 and @sell_in != 0
   end
 
-  def si_less_5_method(item)
-    item.quality += 3 and item.sell_in -= 1
+  def quality_plus_two
+    @quality += 2 and @sell_in -= 1
   end
 
-  def si_less_10(item)
-    item.quality <= 48 and item.sell_in <= 10
+  def quality_less_50
+    @quality < 50 and @sell_in > 4 and @sell_in != 0
   end
 
-  def si_less_10_method(item)
-    item.quality += 2 and item.sell_in -= 1
-  end
-
-  def q_less_50(item)
-    item.quality < 50 and item.sell_in > 4
-  end
-
-  def q_less_50_method(item)
-    item.quality += 1 and item.sell_in -= 1
-  end
-
-  def error_logger
-    return "There seems to be a problem, please try again"
+  def quality_plus_one
+    @quality += 1 and @sell_in -= 1
   end
 
 end

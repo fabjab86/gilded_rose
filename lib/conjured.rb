@@ -1,8 +1,5 @@
 require 'item'
 
-# # * "Conjured" items degrade in `quality` twice as fast as normal items
- # quality can not be more then 50
-
 class Conjured < Item
   def update_item
     @quality = 0 if @quality.zero? or @sell_in.zero?
