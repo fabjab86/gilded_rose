@@ -12,7 +12,7 @@ describe MagicBean do
 
     it "it randomly decreases in quality by 0" do
       item = MagicBean.new("magicBean", 4, 5)
-      allow(item).to receive(:randomly).and_return(1)
+      allow(item).to receive(:randomly).and_return(0)
       item.update_item
       expect(item.quality).to eq(5)
     end
