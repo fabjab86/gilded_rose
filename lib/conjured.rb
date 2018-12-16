@@ -1,4 +1,4 @@
-require 'item'
+require_relative 'item'
 
 class Conjured < Item
   def update_item

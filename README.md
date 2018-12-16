@@ -51,10 +51,23 @@ our system:
 Open interactive Ruby Shell (IRB or irb) or pry   
 `irb` or `pry`  
 `require './lib/gilded_rose.rb'`  
-`require './lib/item.rb'`  
-`item = Item.new("hi", 4,4)`  
-`gilded_rose = GildedRose.new(item)`  
-`GildedRose.new([item]).update_quality`  
+`require './lib/generalitems.rb'`  
+`require './lib/conjured.rb'`  
+`gi = GeneralItems.new("Some general item",7,7)`  
+`conj = Conjured.new("what is this", 8, 8)`  
+`gilded = GildedRose.new([gi, conj])`   
+`gilded.update_quality`  
+
+> Or you can do it individually  
+
+`require './lib/generalitems.rb'`  
+`require './lib/conjured.rb'`  
+`gi = GeneralItems.new("Some general item",7,7)`  
+`conj = Conjured.new("what is this", 8, 8)`  
+`gi.update_item`  
+`conj.update_item`  
+
+
 
 ### How to test
 
