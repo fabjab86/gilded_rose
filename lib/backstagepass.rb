@@ -4,7 +4,7 @@ class BackStagePass < Item
 
   def update_item
     @sell_in -= 1 if @quality == 50
-    increase_by_one
+    increase_by_one_if_quality_is_49
     increase_quality if sell_in > 1 and quality > 0
     @quality = 0 if sell_in.zero?
   end
@@ -15,7 +15,7 @@ class BackStagePass < Item
     if_less_than_6_sell_in_days
   end
 
-  def increase_by_one
+  def increase_by_one_if_quality_is_49
     @quality += 1 and @sell_in -= 1 if @quality == 49
   end
 
