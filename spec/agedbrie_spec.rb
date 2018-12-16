@@ -28,7 +28,7 @@ describe AgedBrie do
   # * The `quality` of an item is never more than 50
 
   describe "items quality" do
-    xit "is never more than 50" do
+    it "is never more than 50" do
       item = AgedBrie.new("Aged Brie", 3, 50)
       GildedRose.new([item]).update_quality
       expect(item.quality).to eq(50)
