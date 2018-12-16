@@ -32,6 +32,4 @@ describe MagicBean do
       expect(item.quality).to eq(0)
     end
   end
-
-
 end
