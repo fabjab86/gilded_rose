@@ -3,7 +3,7 @@ require_relative 'item'
 class MagicBean < Item
 
   def randomly
-    rand(0..1)
+    rand(2)
   end
 
   def update_item

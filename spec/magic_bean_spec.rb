@@ -2,7 +2,7 @@ require 'magic_bean'
 
 describe MagicBean do
 
-  describe "magicbean quality" do
+  describe "magic_bean quality" do
     it "it randomly decreases in quality by 1" do
       item = MagicBean.new("magicBean", 4, 5)
       allow(item).to receive(:randomly).and_return(1)
