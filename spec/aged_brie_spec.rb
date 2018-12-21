@@ -1,4 +1,4 @@
-require 'agedbrie'
+require 'aged_brie'
 
 describe AgedBrie do
 

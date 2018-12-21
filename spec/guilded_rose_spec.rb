@@ -1,6 +1,6 @@
 require 'gilded_rose'
-require 'backstagepass'
-require 'generalitems'
+require 'backstage_pass'
+require 'general_items'
 require 'conjured'
 require 'item'
 

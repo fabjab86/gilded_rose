@@ -1,4 +1,4 @@
-require 'magicbean'
+require 'magic_bean'
 
 describe MagicBean do
 

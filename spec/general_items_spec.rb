@@ -1,4 +1,4 @@
-require 'generalitems'
+require 'general_items'
 
 # * All items have a `sell_in` value which denotes the number of days we have to sell
 #   the item
