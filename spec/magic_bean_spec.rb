@@ -5,23 +5,23 @@ describe MagicBean do
   describe "magic_bean quality" do
     it "it randomly decreases in quality by 1" do
       item = MagicBean.new("magicBean", 4, 5)
-      allow(item).to receive(:randomly).and_return(1)
+      Kernel.stub(:rand).with(anything) { 1 }
       item.update_item
       expect(item.quality).to eq(4)
     end
 
     it "it randomly decreases in quality by 0" do
       item = MagicBean.new("magicBean", 4, 5)
-      allow(item).to receive(:randomly).and_return(0)
+      Kernel.stub(:rand).with(anything) { 0 }
       item.update_item
       expect(item.quality).to eq(5)
     end
 
     it "is never less than zero" do
       item = MagicBean.new("magicBean", 4, 1)
-      allow(item).to receive(:randomly).and_return(1)
+      Kernel.stub(:rand).with(anything) { 1 }
       item.update_item
-      expect(item.quality).to eq(0)
+      Kernel.stub(:rand).with(anything) { 0 }
       item.update_item
       expect(item.quality).to eq(0)
     end
