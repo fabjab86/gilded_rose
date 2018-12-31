@@ -1,6 +1,9 @@
 require 'magic_bean'
 
 describe MagicBean do
+  before :each do
+    srand(67809)
+  end
 
   describe "magic_bean quality" do
     it "it randomly decreases in quality by 1" do
